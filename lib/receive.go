@@ -65,16 +65,14 @@ func receiveAction(cctx *cli.Context) error {
 				return
 			}
 
-			if pkt.Event == EventFile {
-				wg.Add(1)
-				fmt.Println("accepted  a new data connection")
-				go func(cc net.Conn) {
-					if err := handleReceivingFiles(dir, cc, &wg); err != nil {
-						fmt.Println("handleReceivingFiles errored: ", err)
-					}
+			wg.Add(1)
+			fmt.Println("accepted  a new data connection")
+			go func(cc net.Conn) {
+				if err := handleReceivingFiles(dir, cc, &wg); err != nil {
+					fmt.Println("handleReceivingFiles errored: ", err)
+				}
 
-				}(con)
-			}
+			}(con)
 
 		}
 	}()
