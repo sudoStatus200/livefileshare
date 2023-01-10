@@ -58,12 +58,6 @@ func receiveAction(cctx *cli.Context) error {
 				fmt.Println("failed to accept new connection: ", err)
 				return
 			}
-			pkt, err := readControlPacket(con)
-
-			if err != nil {
-				fmt.Println("failed to accept new connection: ", err)
-				return
-			}
 
 			wg.Add(1)
 			fmt.Println("accepted  a new data connection")
@@ -86,6 +80,8 @@ func receiveAction(cctx *cli.Context) error {
 	if spkt.Event != EventStart {
 		return fmt.Errorf("first event from control packet should be start")
 	}
+
+	select {}
 
 	fmt.Println("now waiting on control end")
 
