@@ -1,4 +1,4 @@
-package main
+package lib
 
 import (
 	"encoding/json"
@@ -13,7 +13,7 @@ import (
 	cli "github.com/urfave/cli/v2"
 )
 
-var receiveCmd = &cli.Command{
+var ReceiveCmd = &cli.Command{
 	Name: "receive",
 	Flags: []cli.Flag{
 		&cli.StringFlag{

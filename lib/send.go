@@ -1,4 +1,4 @@
-package main
+package lib
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var sendCmf = &cli.Command{
+var SendCmd = &cli.Command{
 	Name: "send",
 	Flags: []cli.Flag{
 		&cli.IntFlag{
