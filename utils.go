@@ -26,3 +26,17 @@ func readControlPacket(con net.Conn) (*controlPacket, error) {
 	return &pkt, nil
 
 }
+
+func writeControlPacket(con net.Conn, pkt *controlPacket) error {
+
+	b, err := json.Marshal(pkt)
+	if err != nil {
+		return err
+	}
+	buf := make([]byte, 4)
+	binary.BigEndian.PutUint32(buf, uint32(len(b)))
+	con.Write(buf)
+	_, err = con.Write(b)
+	return err
+
+}

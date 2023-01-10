@@ -79,8 +79,9 @@ func receiveAction(cctx *cli.Context) error {
 		return fmt.Errorf("first event from control packet should be start")
 	}
 
-	select {}
-	fmt.Println("now waiting on control end")
+	// select {}
+
+	// fmt.Println("now waiting on control end")
 
 	spkt, err = readControlPacket(control)
 	if err != nil {
